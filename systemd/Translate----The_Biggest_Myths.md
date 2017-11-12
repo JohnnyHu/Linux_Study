@@ -21,16 +21,24 @@ Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/syst
 
 #### 误区2：关于systemd的速度 ####
 > 是的， systemd是非常快的(一个相对完整的用户空间启动引导时间在900毫秒内，难道这不快吗？)， 但它的首要目标是做正确事，速度快只是一个自然而然的结果。我们从没有专门优化过systemd的一点点性能。相反，为了保持代码的可读性，我们有意识的选择代码性能不是最高的编码方式。这并不意味着速度快对我们来说无关紧要，但就此认为我们有意识降低systemd的速度则是一个相当大的误解，只不过它们不在我们目标列表的最顶层罢了。
-
+l
 
 #### 3.Myth: systemd's fast boot-up is irrelevant for servers. ####
 > That is just completely not true. Many administrators actually are keen on reduced downtimes during maintenance windows. In High Availability setups it's kinda nice if the failed machine comes back up really fast. In cloud setups with a large number of VMs or containers the price of slow boots multiplies with the number of instances. Spending minutes of CPU and IO on really slow boots of hundreds of VMs or containers reduces your system's density drastically, heck, it even costs you more energy. Slow boots can be quite financially expensive. Then, fast booting of containers allows you to implement a logic such as [socket activated containers](http://0pointer.de/blog/projects/socket-activated-containers.html), allowing you to drastically increase the density of your cloud system.
 > 
 > Of course, in many server setups boot-up is indeed irrelevant, but systemd is supposed to cover the whole range. And yes, I am aware that often it is the server firmware that costs the most time at boot-up, and the OS anyways fast compared to that, but well, systemd is still supposed to cover the whole range (see above...), and no, not all servers have such bad firmware, and certainly not VMs and containers, which are servers of a kind, too.[2]
 
+#### 误区3：对服务器来说systemd的快速启动是无关紧要的 ####
+> 这肯定是不正确的。实际上，许多管理人员都倾向于缩短维护期的停机时间。在高可用的情况下，启动发生故障的机器肯定是越快越好。在以时间计费的云设置中，慢启动的代价与云中实际的虚拟机或容器的的数量成正比。在成百上千个虚拟中，由于慢启动所花费的CPU和IO的时间，大大降低了系统的密度，要命的是，它会花费你更多的时间和精力。在云系统中，从经济层面来讲，慢启动代价十分昂贵。而快启动的容器则允许你实现诸如激活socket等的逻辑，从而可以大幅度提高你系统的密度。
+>
+> 当然，在许多服务器设置中，开机启动确实没那么重要，但systemd确保涵盖更广的范围。是的，我知道无论操作启动启动多快，服务器的硬件总是在开机时花费的时间最多。但是，systemd仍然应该覆盖整个的范围(如上所述....). 因为并不是所有的服务器硬件都那么差，也并不是所有的服务器都是虚拟机和容器。
+ 
 
 #### 4.Myth: systemd is incompatible with shell scripts. ####
 > This is entirely bogus. We just don't use them for the boot process, because we believe they aren't the best tool for that specific purpose, but that doesn't mean systemd was incompatible with them. You can easily run shell scripts as systemd services, heck, you can run scripts written in any language as systemd services, systemd doesn't care the slightest bit what's inside your executable. Moreover, we heavily use shell scripts for our own purposes, for installing, building, testing systemd. And you can stick your scripts in the early boot process, use them for normal services, you can run them at latest shutdown, there are practically no limits.
+
+#### 误区4：systemd同shell脚本不兼容 ####
+> 这简直是胡扯，我们只是在开机进程中不用它而已，对systemd来说，我们相信它不是最好的工具，但这并不意味着不兼容它们。你可以运行shell脚本作为systmed的服务，你甚至可以运行用任何语言写的脚本服务，systemd并不在乎你的可执行文件里面有什么。另外，我们在安装，构建和测试systemd等步骤时也大量的使用脚本。所以，你可以自由的使用脚本在早期的启动进程中，将它们用于正常的服务，或者用在最后的关机中，这实际上是没有任何的限制的。
 
 
 #### 5.Myth: systemd is difficult. ####
@@ -42,11 +50,25 @@ Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/syst
 > 
 > Anyway, the take-away is probably that systemd is probably as simple as such a system can be, and that we try hard to make it easy to learn. But yes, if you know sysvinit then adopting systemd will require a bit learning, but quite frankly if you mastered sysvinit, then systemd should be easy for you.
 
+#### 误区5. systemd很难 ####
+> 还真不能这么说。有systemd平台的Linux实际上比传统的Linuxes更为简单，因为它统一将系统对象和它的依赖作为systemd单元。它的配置文件语言非常简单，我们摒弃了那些冗余的配置。我们为系统的大部分工具提供了统一的工具。系统也比传统的Linux要小的多。我们也提供了关于systemd的每一个细节([所有连接主页](http://www.freedesktop.org/wiki/Software/systemd))的非常全面的文档， 这不仅涵盖了管理员/用户面的接口，也有面向开发者的API。
+>
+> systemd肯定有一个学习曲线, 任何事情都如此。然而，我们也相信对于大部分人来说，理解systemd实际上比理解基于shell脚本的启动更为简单。很吃惊是吧？ 嗯，由于已经证实，其实Shell是一门不太好掌握的语言，它的语法晦涩难懂且复杂。systemd unit文件基本上更容易去理解，他们不依赖与一个特定的编程语言，其本质上是简单的和声明性的。这一切都表明，如果你在shell方面有经验，采用systemd确实需要花费一点时间去学习。
+>
+> 为了使学习systemd更为容易，我们尽力去兼容旧有的解决方案。不仅如此，在许多分发版上，你会发现当你在执行请求时，一些传统的工具甚至会告诉你，怎样用一个新的工具以一种更好的方式去替代旧有的工具。
+>
+> 无论如何，这个系统足够简单，我们尽力使它易于学习。 是的，如果你知道sysinit，那么你需要花一点时间来掌握systemd，但坦率的来说,如果你掌握了sysinit，那么学习systemd也是更容易的。
+
 
 #### 6.Myth: systemd is not modular. ####
 > Not true at all. At compile time you have a number of configure switches to select what you want to build, and what not. And [we document](http://freedesktop.org/wiki/Software/systemd/MinimalBuilds) how you can select in even more detail what you need, going beyond our configure switches.
 > 
 > This modularity is not totally unlike the one of the Linux kernel, where you can select many features individually at compile time. If the kernel is modular enough for you then systemd should be pretty close, too.
+
+#### 误区6：systemd是非模块化的 ####
+> 当然不是这样的。在编译期间，有许多配置选项开关供你选择哪些需要build，哪些不需要。并且，我们的[文档](http://freedesktop.org/wiki/Software/systemd/MinimalBuilds)也记录了比配置选项开关更多的细节，你可以找到你所需的。
+> 
+> 这种模块化方式与kernel的模块化方式完全不同，systemd在编译时可以单独选择诸多功能，如果你认为kernel足够模块化，那么systemd也应该非常接近了。
 
 
 ####7.Myth: systemd is only for desktops. ####
@@ -56,9 +78,18 @@ Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/syst
 > 
 > Most features I most recently worked on are probably relevant primarily on servers, such as [container support](http://0pointer.de/blog/projects/socket-activated-containers.html), [resource management](http://0pointer.de/blog/projects/resources.html) or the [security features](http://0pointer.de/blog/projects/security.html). We cover desktop systems pretty well already, and there are number of companies doing systemd development for embedded, some even offer consulting services in it.
 
+#### 误区7：systemd仅适用于桌面版系统 ####
+> 这当然也不是真的，我们尽力使systemd的覆盖范围同Linux本身的范围一样广。虽然我们关注桌面版linux的使用，当我们也同样方式关心其在Linux服务器及其嵌入式方面的使用。你能够想到，如果它在服务管理方面不是最佳的管理服务程序，Red Hat不会把它作为RHEL7的核心模块。
+> 
+> 来自众多公司的人员在systemd上工作，汽车提供商把它放进汽车系统中， Ret Hat在服务器操作系统总使用它，GNOME使用它的许多接口去改善桌面程序，甚至你可以在玩具，太空望远镜和风力涡轮机中找到它。
+>
+> 我最近的工作中的大部分功能可能大部分主要用于服务器上，比如：[容器支持](http://0pointer.de/blog/projects/socket-activated-containers.html)、[资源管理](http://0pointer.de/blog/projects/resources.html)和[安全功能](http://0pointer.de/blog/projects/security.html)。我们已经很好地覆盖了桌面系统，而且有很多公司使用systedmd开发他们的嵌入式系统，有些甚至提供咨询服务。
 
 #### 8.Myth: systemd was created as result of the NIH syndrome. ####
 > This is not true. Before we began working on systemd we were pushing for Canonical's Upstart to be widely adopted (and Fedora/RHEL used it too for a while). However, we eventually came to the conclusion that its design was inherently flawed at its core (at least in our eyes: most fundamentally, it leaves dependency management to the admin/developer, instead of solving this hard problem in code), and if something's wrong in the core you better replace it, rather than fix it. This was hardly the only reason though, other things that came into play, such as the licensing/contribution agreement mess around it. NIH wasn't one of the reasons, though...[3]
+
+#### 误区8：systemd是NIH综合征的结果。 ####
+> 不是这样的，在我们开始开发systemd之前，我们曾推动Canonical的Upstart被广泛采用（Fedora/RHEL也已经使用了它一段时间了）,然而，我们最终得出的结论是，它的设计本质上是有缺陷的（至少在我们的眼中： 它将依赖管理留给admin/developer,而不是在代码中解决这个难题）, 其如果在core中出错，你最好是替换它，而不是去修复它。这并不是唯一的原因，其他一些是围绕它的许可协议的混乱等等。 NIH不是唯一的理由，尽管...[3]
 
 
 #### 9.Myth: systemd is a freedesktop.org project. ####
@@ -66,6 +97,10 @@ Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/syst
 > 
 > So yes, we host our stuff at fdo, but the implied assumption of this myth in that there was a group of people who meet and then agree on how the future free systems look like, is entirely bogus.
 
+#### 误区9： systemd是a freedesktop.org的一个项目 ####
+>嗯，systemd是托管在fdo, 但freedesktop.org也仅仅是托管代码的库和文档而已，几乎任何的coder都可以在那里请求一个代码仓库，用于存储他的东西(只要它是与自由系统架构相关的一些东西)。没有涉及任何的阴谋，没有任何"标准化"的计划，没有项目审查，都没有。这仅仅是一个不错的，免费其可靠的可以存储你代码库的地方。在这方面，它有点像SourceForge, github, kernel.org，只是它是非商业的，且没有过度的顶级要求，因此它是存储我们东西的一个好地方。
+>
+>所以，是的，我们是吧systemd的所有东西存放在了fdo上，但是这个误区成立的隐含条件是，一群人聚在一起，一致认为未来的自由系统会是怎样的，这完全是胡扯。
 
 #### 10.Myth: systemd is not UNIX. ####
 > There's certainly some truth in that. systemd's sources do not contain a single line of code originating from original UNIX. However, we derive inspiration from UNIX, and thus there's a ton of UNIX in systemd. For example, the UNIX idea of "everything is a file" finds reflection in that in systemd all services are exposed at runtime in a kernel file system, the cgroupfs. Then, one of the original features of UNIX was multi-seat support, based on built-in terminal support. Text terminals are hardly the state of the art how you interface with your computer these days however. With systemd we brought native [multi-seat](http://0pointer.de/blog/projects/multi-seat.html) support back, but this time with full support for today's hardware, covering graphics, mice, audio, webcams and more, and all that fully automatic, hotplug-capable and without configuration. In fact the design of systemd as a suite of integrated tools that each have their individual purposes but when used together are more than just the sum of the parts, that's pretty much at the core of UNIX philosophy. Then, the way our project is handled (i.e. maintaining much of the core OS in a single git repository) is much closer to the BSD model (which is a true UNIX, unlike Linux) of doing things (where most of the core OS is kept in a single CVS/SVN repository) than things on Linux ever were.
@@ -73,6 +108,13 @@ Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/syst
 > Ultimately, UNIX is something different for everybody. For us systemd maintainers it is something we derive inspiration from. For others it is a religion, and much like the other world religions there are different readings and understandings of it. Some define UNIX based on specific pieces of code heritage, others see it just as a set of ideas, others as a set of commands or APIs, and even others as a definition of behaviours. Of course, it is impossible to ever make all these people happy.
 > 
 > Ultimately the question whether something is UNIX or not matters very little. Being technically excellent is hardly exclusive to UNIX. For us, UNIX is a major influence (heck, the biggest one), but we also have other influences. Hence in some areas systemd will be very UNIXy, and in others a little bit less.
+
+#### 误区10：systemd不是Unix的 ####
+> 这是有一定道理的。systemd的源码没有一行是从原始的UNIX总获取的。然而，我们从UNIX中获取灵感，因此systemd中也有大量的UNIX。比如，UNIX的思想"一起皆文件"映射到systemd中就是，所有的服务在运行时都置于linux内核文件系统cgroupfs中。UNIX的原始特征之一是基于内建终端的多席位支持，然而，现今文本终端已经不是与计算机进行接口的最流行的方式了，对于systemd我们带来了原生的[多席位](http://0pointer.de/blog/projects/multi-seat.html)支持，且这一次全面支持今天的硬件，覆盖图形，鼠标，音频，网络摄像头等，以及所有这些全自动，热插拔功能，无需配置。事实上，systemd作为一套集成工具的设计，每个工具都有其特定的目的，但是如果一起使用，就不仅仅是各个部分的总和，它很好的展现了UNIX理念的核心。因此我们项目的处理方式(比如：维护诸多的OS的内核在单一的git仓库中)相比Linux曾经的方式来说更接近BSD模型（这是一个真正的UNIX，不像Linux）。
+> 
+> 最终，UNIX对每个人来说都是不同的。对于我们systemd的维护者来说确实是有一些灵感来自它，当这是一个仁者见仁，智者见智的问题。 有些人基于Unix特定的代码遗产来定义它，有些人将它视为一种思想，而另一些人则认为它是命令集和API的集合，甚至有人将其视为一种行为的定义。当然，让所有这些满意是不可能的。
+> 
+> 对于最终的问题它是不是UNIX的其实一点也不重要。技术上的优秀对于UNIX来说并不是专有的。对于我们来说，UNIX是一个主要的影响（最大的影响），但是我们也有其他的影响。 因此，systemd在一些地方会很UNIXy，而在其他地方就有点少。
 
 
 #### 11.Myth: systemd is complex. ####

@@ -71,7 +71,7 @@ l
 > 这种模块化方式与kernel的模块化方式完全不同，systemd在编译时可以单独选择诸多功能，如果你认为kernel足够模块化，那么systemd也应该非常接近了。
 
 
-####7.Myth: systemd is only for desktops. ####
+#### 7.Myth: systemd is only for desktops. ####
 > That is certainly not true. With systemd we try to cover pretty much the same range as Linux itself does. While we care for desktop uses, we also care pretty much the same way for server uses, and embedded uses as well. You can bet that Red Hat wouldn't make it a core piece of RHEL7 if it wasn't the best option for managing services on servers.
 > 
 > People from numerous companies work on systemd. Car manufactureres build it into cars, Red Hat uses it for a server operating system, and GNOME uses many of its interfaces for improving the desktop. You find it in toys, in space telescopes, and in wind turbines.
@@ -120,6 +120,9 @@ l
 #### 11.Myth: systemd is complex. ####
 > There's certainly some truth in that. Modern computers are complex beasts, and the OS running on it will hence have to be complex too. However, systemd is certainly not more complex than prior implementations of the same components. Much rather, it's simpler, and has less redundancy (see above). Moreover, building a simple OS based on systemd will involve much fewer packages than a traditional Linux did. Fewer packages makes it easier to build your system, gets rid of interdependencies and of much of the different behaviour of every component involved.
 
+#### 误区11：systemd很复杂 ####
+> 这是有一定道理的。现代计算机就是复杂的怪兽，也就不奇怪运行在它上面的操作系统复杂了。但systemd没有比它们比之前同样功能的组件更复杂。确切的说，它更简单，少冗余(如上所述)。此外，构建一个基本systemd的简单的操作系统，将比之前传统的Linux包含更少的包。更少的包意味着构建系统更简单，减少了依赖和避免陷入不同组件有不同行为的漩涡。
+
 
 #### 12.Myth: systemd is bloated. ####
 > Well, bloated certainly has many different definitions. But in most definitions systemd is probably the opposite of bloat. Since systemd components share a common code base, they tend to share much more code for common code paths. Here's an example: in a traditional Linux setup, sysvinit, start-stop-daemon, inetd, cron, dbus, all implemented a scheme to execute processes with various configuration options in a certain, hopefully clean environment. On systemd the code paths for all of this, for the configuration parsing, as well as the actual execution is shared. This means less code, less place for mistakes, less memory and cache pressure, and is thus a very good thing. And as a side-effect you actually get a ton more functionality for it...
@@ -130,13 +133,27 @@ l
 > 
 > So, yeah, whichever way you look at it, it's really not bloated.
 
+#### 误区12： systemd是臃肿的 ####
+> 嗯，臃肿有许多不同的定义。在大多数定义下里systemd可能臃肿的反面。由于systemd的组件共享一个共同的代码库，他们倾向于为共同的代码路径共享更多的代码。这儿有个例子：在传统的Linux设置中，sysvinit, start-stop-daemon, inetd, cron, dbus都希望在一个干净的环境中实现了一个方案来执行具有各种配置选项的进程。 在systemd中，所有的代码路径，配置解析以及实际执行都是共享的。这意味着更少的代码，更少的错误，更少的内存和缓存压力，因此是一件非常好的事情。 而另一方面，你实际上得到了更多的功能。
+> 
+> 正如上面提到的，systemd是相当的模块化的。你可以在编译期间选项你需要的和不需要的。因此，人们可以专门选择他们想要的“臃肿”等级。
+> 
+> 当你构建systemd时，唯一需要的三个依赖就是：glibc， libcap和dbus,仅此而已。它可以利用更多的依赖，但是这些都是可选的。
+>
+> 所以，无论从哪方面来看它都不会臃肿。
 
 #### 13.Myth: systemd being Linux-only is not nice to the BSDs. ####
 > Completely wrong. The BSD folks are pretty much uninterested in systemd. If systemd was portable, this would change nothing, they still wouldn't adopt it. And the same is true for the other Unixes in the world. Solaris has SMF, BSD has their own "rc" system, and they always maintained it separately from Linux. The init system is very close to the core of the entire OS. And these other operating systems hence define themselves among other things by their core userspace. The assumption that they'd adopt our core userspace if we just made it portable, is completely without any foundation.
 
+#### > 误区13：systemd是仅限于Linux的，对于BSD来说并不友好。 ####
+> 完全错误，BSD的拥趸对systemd完全不敢兴趣。即使systemd是可移植的，这仍然不会有任何有何改变，他们仍然不会采用它。在其他Unix世界中也一样，Solaris有SMF，BSD有它自己的“RC”系统，且它们都是和Linux分开维护的。init系统非常靠近整个OS的内核。而这些其他的操作系统因此也是由它们的核心用户空间定义的。 假设他们将我们的核心用户空间，这种假设建立如果我们使得systemd是可移植的，它们就采用我们的核心用户空间，这完全是没有任何基础。
+
 
 #### 14.Myth: systemd being Linux-only makes it impossible for Debian to adopt it as default. ####
 > Debian supports non-Linux kernels in their distribution. systemd won't run on those. Is that a problem though, and should that hinder them to adopt system as default? Not really. The folks who ported Debian to these other kernels were willing to invest time in a massive porting effort, they set up test and build systems, and patched and built numerous packages for their goal. The maintainance of both a systemd unit file and a classic init script for the packaged services is a negligable amount of work compared to that, especially since those scripts more often than not exist already.
+
+#### 误区14：systemd是仅限于Linux，这使得Debian无法将其作为默认设置。 ####
+> Debian在它们的分发版中支持非Linux的内核。systemd不能够在这些上面运行。这里的问题就是，是否就应该应该阻碍他们采用系统的默认？并不是这样的。将Debian移植到其他内核的人们愿意投入大量时间进行大量的移植工作，他们建立了测试和构建系统，并为他们的目标修补和构建了大量的软件包。对于打包服务来说，systemd单元文件和经典的init脚本之间的维护与此相比是一个可以忽略的工作量，特别是因为这些脚本已经存在了。
 
 
 #### 15.Myth: systemd could be ported to other kernels if its maintainers just wanted to. ####
@@ -145,24 +162,44 @@ l
 > And no, if you look at this list and pick out the few where you can think of obvious counterparts on other kernels, then think again, and look at the others you didn't pick, and the complexity of replacing them.
 
 
+#### 误区15： 如果systemd的维护者愿意，它就能够移植到其他内核中 ####
+> 这根本不是真的。将systemd移植到其他内核是不可行的。我们使用了太多Linux专有的接口。少量的一些可以在其他内核中找到替代者，一些功能可能要关闭，但大多数是不可能的。这里有一个小而不完整的清单： *cgroups, fanotify, umount2(), /proc/self/mountinfo* (包含通知), */dev/swaps* (same), *udev, netlink*, the structure of */sys, /proc/$PID/comm, /proc/$PID/cmdline, /proc/$PID/loginuid, /proc/$PID/stat, /proc/$PID/session, /proc/$PID/exe, /proc/$PID/fd, tmpfs, devtmpfs,* capabilities, 各式种类的命名空间, 多种 *prctl()s*, 众多的 *ioctls*, *mount()* 系统调用和它的语义, *selinux, audit, inotify, statfs, O_DIRECTORY, O_NOATIME, /proc/$PID/root, waitid(), SCM_CREDENTIALS, SCM_RIGHTS, mkostemp(), /dev/input, ...*等等。
+
+
 #### 16.Myth: systemd is not portable for no reason. ####
 > Non-sense! We use the Linux-specific functionality because we need it to implement what we want. Linux has so many features that UNIX/POSIX didn't have, and we want to empower the user with them. These features are incredibly useful, but only if they are actually exposed in a friendly way to the user, and that's what we do with systemd.
+
+#### 误区16：systemd无法移植没有任何缘由 ####
+> 废话！ 我们使用Linux专有的功能是因为我们需要它去实现我们想要的。Linux有许多功能是UNIX/POSIX没有的，我们希望把它呈现给用户。但只有当这些功能以友好的方式呈现给用户时，才会发觉它的优异性，这也正是systemd所做的。
 
 
 #### 17.Myth: systemd uses binary configuration files. ####
 > No idea who came up with this crazy myth, but it's absolutely not true. systemd is configured pretty much exclusively via simple text files. A few settings you can also alter with the kernel command line and via environment variables. There's nothing binary in its configuration (not even XML). Just plain, simple, easy-to-read text files.
 
+#### 误区17：systemd使用二进制的配置文件。 ####
+> 不知道谁创造了这个疯狂的谣言，这绝对不是真的。systemd几乎完全通过简单的文本文件进行配置。一些配置你可以选择使用内核命令行或者环境变量。这里没有二进制的配置（甚至没有XML）。 只是普通的，简单的，易于阅读的文本文件。
+
 
 #### 18.Myth: systemd is a feature creep. ####
 > Well, systemd certainly covers more ground that it used to. It's not just an init system anymore, but the basic userspace building block to build an OS from, but we carefully make sure to keep most of the features optional. You can turn a lot off at compile time, and even more at runtime. Thus you can choose freely how much feature creeping you want.
 
+#### 误区18： systemd是一个典型的功能蔓延(feature creep) ####
+*译注：功能蔓延（feature creep），有时也被称为需求蔓延（requirements creep）或范围蔓延（scope creep），它是指在发展过程中产品或设计的需求增加大大超过他们原来预期的趋势，导致其功能不是原本计划的并且要承担产品质量或生产进度的风险。功能蔓延可能是由于客户期望功能的增加或由于开发者自身发现了改善产品的机会而导致的。为了控制功能蔓延，设计管理工具有时被提倡使用，比如需求稳定性索引（RSI）。*
+
+> 嗯，systemd在过去的基础上，确实涵盖了更多。它不仅仅是一个init系统，而是构建系统的基本用户空间的基础构建模块。但我们确保其大部分功能都是可选的， 你可以在编译期间关掉大部分它的功能，甚至在运行期间。这样你就可以自由选择你想要的feature creeping 。
 
 #### 19.Myth: systemd forces you to do something. ####
 > systemd is not the mafia. It's Free Software, you can do with it whatever you want, and that includes not using it. That's pretty much the opposite of "forcing".
 
+#### 误区19： systemd强迫你去做某些事 ####
+systemd不是黑手党。它是自由软件，你可以选项你想要的或者不想要的。这正是"强迫"的反面。
+
 
 #### 20.Myth: systemd makes it impossible to run syslog. ####
 > Not true, we carefully made sure when we [introduced the journal](http://0pointer.de/blog/projects/the-journal.html) that all data is also passed on to any syslog daemon running. In fact, if something changed, then only that syslog gets more complete data now than it got before, since we now cover early boot stuff as well as STDOUT/STDERR of any system service.
+
+#### 误区20： systemd使得运行syslog变成不可能 ####
+> 这完全是误解，在我们介绍journal是已经非常小心的确保说明所有的数据也会被传到任何真在运行的syslog守护进程。事实上，如果事情发生了变化，那么现在只有syslog获得比以前更完整的数据，因为现在我们涵盖了早期boot的一些东西及任何系统服务的STDOUT/STDERR。
 
 
 #### 21.Myth: systemd is incompatible. ####

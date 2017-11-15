@@ -268,7 +268,16 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > 
 > But in general, yes, some of the more influental contributors of systemd work for Red Hat, but they are in the minority, and systemd is a healthy, open community with different interests, different backgrounds, just unified by a few rough ideas where the trip should go, a community where code and its design counts, and certainly not company affiliation.
 
-#### 误区27：systemd是一个Red Hat项目，是一些聪明的开发者的私有财产，被用它来把他们的观点推向世界。 ####
+#### 误区27：systemd是一个独有Red Hat项目，是一些聪明的开发者的私有财产，被用它来把他们的观点推向世界。 ####
+> 不是真的，目前，有16个极客对于git tree具有提交的权利，16个人当中仅有6个是Red Hat的，其他的10个人分别来自ArchLinux,Debian和Intel.即使来自Canonical, Mandriva, Pantheon和许多社区的人们也完全具有提交的权利。它们经常提交大的模块，做大的改变。到目前为止，在我们的项目树中已经有374个独立的补丁包，他们分别来自具体不同背景的公司。而它们中的有的人已经不止一次提交了。关于讨ystemd应该有哪些功能的讨论完全是开放的，在我们的IRC频道上(#其中的sytemd板块，随时欢迎你的到来)。我们的邮件列表及公共的极客省会(比如在Brno的our next on,也邀请你来参加)。 我们经常参加各种会议，收集反馈意见，解释我们正在做什么及为什么要这么做，先其他项目一样。 我们维护博客，参与社交网络（我们在Google+上实际上有一些非常有趣的内容，而且我们的Google+社区也非常活跃），并且我们非常努力的去解释为什么和如何做我们正在做的事（例如，根据这些反馈，我们编制了这个经常听到的关于systemd的这个误区清单）。
+>
+> 大多数的systemd贡献者可能会粗略的分享一个好系统应该是怎样的想法，且他们也渴望系统真的能这样做。然而，由于开源系统本质，systemd仅仅只是社区的人们想要的功能，如果它不是你想要的，你可以通过驱动或者补丁的方式去修改它，如果这样做还不行，可能也还有其他更多的选择，systemd永远不是唯一的。
+> 
+> systemd的一个目标就是统一分散的systemd环境，我们试图摆脱各种分发版系统在操作系统核心中各种无意义的差异，我们以前采用的方案的一部分就是，现在一个发行版上使用的，并把它作为systemd的默认级别，试图慢慢的推广使得每一个发行版都有一组相关的基本配置。然而，这绝不是排他性的，发行版仍可以也他们想要的方式运行，但是，如果你使用了默认的良好的功能，可以使他们的工作变得更容易，获得的功能也会不止一两个。现在，事实证明，更多的我们采取的方案式Debian化的，而非RedHat化的或者Fedora化的作为最好的systemd支持。比如，系统运行systemd一般会存储他们的hostname到/etc/hostname下，以前是Debian特有的东西，现在被用于所有的分发系统上。
+> 
+> 有一件事我们会支持你看法，那就是有时我们可能是聪明的笨驴。 每当我们开口说话时，我们都尽力做好准备，以便能够用事实来支持我们所宣称的事情。 这可能会使我们看起来很聪明。
+> 
+> 总的来说。是的，一些更有影响力的贡献是在为RedHat工作，但他们是少数的，systmed是一个健康，开放的社区，那里人有着不同兴趣，不同背景的人，唯一统一他们的其实的就是船究竟该往哪开的哪些粗略的想法。这个社区是靠着代码和它的设计来联系而不是以公司的方式。
 
 
 #### 28.Myth: systemd doesn't support /usr split from the root directory. ####

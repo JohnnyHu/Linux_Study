@@ -1,7 +1,11 @@
-#  [The Biggest Myths](http://0pointer.de/blog/projects/the-biggest-myths.html) #
+# The Biggest Myths #
+*POSTED ON SA 26 JANUAR 2013*
+
 Since we first proposed [systemd](https://www.freedesktop.org/wiki/Software/systemd/) for inclusion in the distributions it has been frequently discussed in many forums, mailing lists and conferences. In these discussions one can often hear certain myths about systemd, that are repeated over and over again, but certainly don't gain any truth by constant repetition. Let's take the time to debunk a few of them:
 
-# [ 谈对于systemd认知的最大误区](http://0pointer.de/blog/projects/the-biggest-myths.html) #
+# Lennart谈对于systemd认知的最大误区 #
+*[原文](http://0pointer.de/blog/projects/the-biggest-myths.html)于2013年1月26日发布*
+
 从我们首次提出将[systemd](https://www.freedesktop.org/wiki/Software/systemd/)纳入发行版以来，它就在诸多论坛，邮件列表和会议上已经进行了无数次的讨论。在这些讨论中，经常可以听到systemd的某些断言，它们被重复了一次又一次，但可以肯定的是不会通过这些不间断重复的断言就获得任何的事实真相， 让我们花点时间来揭穿其中的一些：
 
 
@@ -199,7 +203,7 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > Not true, we carefully made sure when we [introduced the journal](http://0pointer.de/blog/projects/the-journal.html) that all data is also passed on to any syslog daemon running. In fact, if something changed, then only that syslog gets more complete data now than it got before, since we now cover early boot stuff as well as STDOUT/STDERR of any system service.
 
 #### 误区20： systemd使得运行syslog变成不可能 ####
-> 这完全是误解，在我们介绍journal是已经非常小心的确保说明所有的数据也会被传到任何真在运行的syslog守护进程。事实上，如果事情发生了变化，那么现在只有syslog获得比以前更完整的数据，因为现在我们涵盖了早期boot的一些东西及任何系统服务的STDOUT/STDERR。
+> 这完全是误解，在我们介绍[journal](http://0pointer.de/blog/projects/the-journal.html)是已经非常小心的确保说明所有的数据也会被传到任何真在运行的syslog守护进程。事实上，如果事情发生了变化，那么现在只有syslog获得比以前更完整的数据，因为现在我们涵盖了早期boot的一些东西及任何系统服务的STDOUT/STDERR。
 
 
 #### 21.Myth: systemd is incompatible. ####
@@ -208,7 +212,7 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > It is our goal to ensure that differences between the various distributions are kept at a minimum. That means unit files usually work just fine on a different distribution than you wrote it on, which is a big improvement over classic init scripts which are very hard to write in a way that they run on multiple Linux distributions, due to numerous incompatibilities between them.
 
 #### 误区21: systemd是不兼容的  ####
-> 我们尽最大的可能性使systmed同sysvinit兼容。实际上， 绝大多数脚本不做任何修改就应该能够运行在systemd上，然而，确实有一些不兼容。但我们尽力去文档化这些和解释它们到底是什么原因导致的。最终，实际上不是sysvinit本身的每个系统都会有一定的不兼容性，只是因为它不会共享相同的代码路径。
+> 我们尽最大的可能性使systmed同sysvinit兼容。实际上， 绝大多数脚本不做任何修改就应该能够运行在systemd上，然而，确实有一些不兼容。但我们尽力去[文档化](http://www.freedesktop.org/wiki/Software/systemd/Incompatibilities)这些和解释它们到底是什么原因导致的。最终，实际上不是sysvinit本身的每个系统都会有一定的不兼容性，只是因为它不会共享相同的代码路径。
 >
 > 我们的目标是在多种发行版之间的差异保持最小化。这就意味着单元文件通常能够在不同的发行版上正常工作。这与传统的初始化脚本相比，有很大的改进。由于LInux多个发行版之间的不兼容性，让他们以统一的方式运行是非常困难的。
 
@@ -219,9 +223,9 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > That said, D-Bus actually has bindings for almost any scripting language this world knows. Even from the shell you can invoke arbitrary D-Bus methods with [dbus-send](http://dbus.freedesktop.org/doc/dbus-send.1.html) or [gdbus](http://developer.gnome.org/gio/unstable/gdbus.html). If anything, this improves scriptability due to the good support of D-Bus in the various scripting languages.
 
 #### 误区22：由于D-Bus的使用，systemd不能编写脚本。 ####
-> 不是这样的。systemd接口提供的每个D-BUS接口几乎都在可以在命令行工具中找到。比如：systemctl, loginctl, timedatectl, hostnamectl, localectl等等，你也可以很容易的在脚本中调用这些工具。它们使用易于使用的命令行几乎能够打开所有的API。
+> 不是这样的。systemd接口提供的每个D-BUS接口几乎都在可以在命令行工具中找到。比如：[systemctl](http://www.freedesktop.org/software/systemd/man/systemctl.html), [loginctl](http://www.freedesktop.org/software/systemd/man/loginctl.html), [timedatectl](http://www.freedesktop.org/software/systemd/man/timedatectl.html), [hostnamectl](http://www.freedesktop.org/software/systemd/man/hostnamectl.html), [localectl](http://www.freedesktop.org/software/systemd/man/localectl.html)等等，你也可以很容易的在脚本中调用这些工具。它们使用易于使用的命令行几乎能够打开所有的API。
 > 
-> 这就是说，D-Bus实际上已经绑定了大部分这个世界上知道的脚本语言。甚至在shell中你可以使用dbus-send和gdbus调用任何的D-BUS方法。由于D-BUS对各种脚本提供了很好的支持，这甚至可以改善脚本化的能力。
+> 这就是说，D-Bus实际上已经绑定了大部分这个世界上知道的脚本语言。甚至在shell中你可以使用[dbus-send](http://dbus.freedesktop.org/doc/dbus-send.1.html)和[gdbus](http://developer.gnome.org/gio/unstable/gdbus.html)调用任何的D-BUS方法。由于D-BUS对各种脚本提供了很好的支持，这甚至可以改善脚本化的能力。
 
 
 #### 23.Myth: systemd requires you to use some arcane configuration tools instead of allowing you to edit your configuration files directly. ####
@@ -254,7 +258,7 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > Very much untrue. We pretty much exclusively have technical reasons for the changes we make, and we explain them in the various pieces of documentation, wiki pages, blog articles, mailing list announcements. We try hard to avoid making incompatible changes, and if we do we try to document the why and how in detail. And if you wonder about something, just ask us!
 
 #### 误区26： systemd为了改变而改变的 ####
-> 很不真实。对于所做的改变，我们完全有技术上的原因。为何这样做我们在文档，wiki页，博文，邮件列表中均有说明。我们尽力避免不兼容的改变，如果我们做了改变，我们一定在文档中记录为什么和怎样改变的细节。如果你想知道一些事情，就问问我们吧！
+> 很不真实。对于所做的改变，我们完全有技术上的原因。这样做的原因我们在文档，wiki页，博文，邮件列表中均有说明。我们尽力避免不兼容的改变，如果我们做了改变，我们一定在文档中记录为什么和怎样改变的一些细节。如果你想知道一些事情，尽管来问问我们！
 
 
 #### 27.Myth: systemd is a Red-Hat-only project, is private property of some smart-ass developers, who use it to push their views to the world.  ####
@@ -269,7 +273,7 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > But in general, yes, some of the more influental contributors of systemd work for Red Hat, but they are in the minority, and systemd is a healthy, open community with different interests, different backgrounds, just unified by a few rough ideas where the trip should go, a community where code and its design counts, and certainly not company affiliation.
 
 #### 误区27：systemd是一个独有Red Hat项目，是一些聪明的开发者的私有财产，被用它来把他们的观点推向世界。 ####
-> 不是真的，目前，有16个极客对于git tree具有提交的权利，16个人当中仅有6个是Red Hat的，其他的10个人分别来自ArchLinux,Debian和Intel.即使来自Canonical, Mandriva, Pantheon和许多社区的人们也完全具有提交的权利。它们经常提交大的模块，做大的改变。到目前为止，在我们的项目树中已经有374个独立的补丁包，他们分别来自具体不同背景的公司。而它们中的有的人已经不止一次提交了。关于讨ystemd应该有哪些功能的讨论完全是开放的，在我们的IRC频道上(#其中的sytemd板块，随时欢迎你的到来)。我们的邮件列表及公共的极客省会(比如在Brno的our next on,也邀请你来参加)。 我们经常参加各种会议，收集反馈意见，解释我们正在做什么及为什么要这么做，先其他项目一样。 我们维护博客，参与社交网络（我们在Google+上实际上有一些非常有趣的内容，而且我们的Google+社区也非常活跃），并且我们非常努力的去解释为什么和如何做我们正在做的事（例如，根据这些反馈，我们编制了这个经常听到的关于systemd的这个误区清单）。
+> 不是真的，目前，有16个极客对于git tree具有提交的权利，16个人当中仅有6个是Red Hat的，其他的10个人分别来自ArchLinux,Debian和Intel.即使来自Canonical, Mandriva, Pantheon和许多社区的人们也完全具有提交的权利。它们经常提交大的模块，做大的改变。到目前为止，在我们的项目树中已经有374个独立的补丁包，他们分别来自具体不同背景的公司。而它们中的有的人已经不止一次提交了。关于讨ystemd应该有哪些功能的讨论完全是开放的，在我们的IRC频道上(#其中的sytemd板块，随时欢迎你的到来)。我们的[邮件列表](http://lists.freedesktop.org/mailman/listinfo/systemd-devel)及公共的极客省会(比如在Brno的[our next on](https://plus.google.com/events/cnklef88b85tb6tgf6ue3hn32lg),也邀请你来参加)。 我们经常参加各种会议，收集反馈意见，解释我们正在做什么及为什么要这么做，先其他项目一样。 我们[维护博客](http://0pointer.de/blog)，参与社交网络（我们在[Google+上实际上有一些非常有趣的内容](https://plus.google.com/104232583922197692623/posts)，而且[我们的Google+社区也非常活跃](https://plus.google.com/communities/114587707547576757881)），并且我们非常努力的去解释为什么和如何做我们正在做的事（例如，根据这些反馈，我们编制了这个经常听到的关于systemd的这个误区清单）。
 >
 > 大多数的systemd贡献者可能会粗略的分享一个好系统应该是怎样的想法，且他们也渴望系统真的能这样做。然而，由于开源系统本质，systemd仅仅只是社区的人们想要的功能，如果它不是你想要的，你可以通过驱动或者补丁的方式去修改它，如果这样做还不行，可能也还有其他更多的选择，systemd永远不是唯一的。
 > 
@@ -286,9 +290,9 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > Of course, we still don't think that [actually booting with **/usr** unavailable is a good idea](http://freedesktop.org/wiki/Software/systemd/separate-usr-is-broken), but we support this just fine in our build system. This won't fix the inherent problems of the scheme that you'll encounter all across the board, but you can't blame that on systemd, because in systemd we support this just fine.
 
 #### 误区28：systemd不支持从root目录中拆分/usr ####
-> 废话。从一开始，systemd就在它的配置脚本中支持--with-rootprefix=选项，这允许你告诉systemd整洁的区分早期启动所需的一些东西和之后所需的一些东西，所有这些逻辑都完全存在并且在我们构建系统时保持更新。
+> 废话。从一开始，systemd就在它的配置脚本中支持--with-rootprefix=选项，这允许你告诉systemd整洁的区分早期启动之前和之后所需的一些东西，所有这些逻辑都完全存在并且在我们构建systemd时保持更新。
 > 
-> 当然，我们仍然认为/usr不可用的启动不是一个好的Idea, 但我们仍然在我们的构建系统中支持它，这并不能解决你会遇到的所有问题，但是你不能就此指责systemd，因为在systemd中我们支持这个很好。
+> 当然，我们始终不认为[在实际的启动中/usr目录不可用](http://freedesktop.org/wiki/Software/systemd/separate-usr-is-broken)的是一个好的Idea, 但我们仍然在我们的构建系统中支持它，这并不能解决你会遇到的所有问题，但是你不能就此指责systemd，因为在systemd中我们支持这个很好。
 
 
 #### 29.Myth: systemd doesn't allow your to replace its components. ####
@@ -302,8 +306,7 @@ systemd不是黑手党。它是自由软件，你可以选项你想要的或者�
 > This claim is already contradictory in itself: D-Bus uses sockets as transport, too. Hence whenever D-Bus is used to send something around, a socket is used for that too. D-Bus is mostly a standardized serialization of messages to send over these sockets. If anything this makes it more transparent, since this serialization is well documented, understood and there are numerous tracing tools and language bindings for it. This is very much unlike the usual homegrown protocols the various classic UNIX daemons use to communicate locally.
 
 #### 误区30：systemd使用D-Bus而不是套接字使得它不透明。 ####
-> 这个说法本身就自相矛盾，D-Bus也是使用sockets作为传输。因此，无论何时使用D-Bus发送一些东西，套接字也用于此。 D-Bus主要是通过这些套接字发送标准化序列化的消息。如果有的话，这使得它更加透明化，因为这个序列化是有据可查的，并且有许多跟踪工具和语言绑定。这与各种经典UNIX守护程序用于本地通信的常见自主协议非常不同。
-
+> 这个说法本身就自相矛盾，D-Bus也是使用sockets作为传输的。因此，无论何时使用D-Bus发送一些东西，都会用到sockets。 D-Bus发送给sockets的大多是标准化序列化的消息。如果有什么都能使它更加的透明化的话， 那么这些序列话就要有很好的被文档化，被解释并且有许多跟踪工具和语言绑定。这与用于本地通信的各种经典UNIX守护程序的常见自主协议是非常不同。
 
 Hmm, did I write I just wanted to debunk a "few" myths? Maybe these were more than just a few... Anyway, I hope I managed to clear up a couple of misconceptions. Thanks for your time.
 
@@ -314,6 +317,12 @@ Hmm, did I write I just wanted to debunk a "few" myths? Maybe these were more th
 * [2] Also, we are trying to do our little part on maybe making this better. By exposing boot-time performance of the firmware more prominently in systemd's boot output we hope to shame the firmware writers to clean up their stuff.
 * [3] And anyways, guess which project includes a library "libnih" -- Upstart or systemd?
 * [4] Hint: it's not systemd!
+
+#### 注脚 ####
+* [1] 例如， [systemd-detect-virt](http://www.freedesktop.org/software/systemd/man/systemd-detect-virt.html), [systemd-tmpfiles](http://www.freedesktop.org/software/systemd/man/systemd-tmpfiles.html), [systemd-udevd](http://www.freedesktop.org/software/systemd/man/systemd-udevd.service.html) 等等.
+* [2] 也许，我们尽量做好的这部分会让整个系统变得更好。通过在systemd的启动时间中显著的暴露硬件启动时间的耗时，我们希望可以督促固件编写者更好的优化它们的工程。
+* [3] 无论如何，猜猜哪个项目包含库“*libnih*” - Upstart或systemd？
+* [4] 提示：这不是sysemd!
 
 
 

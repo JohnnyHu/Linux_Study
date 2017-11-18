@@ -7,6 +7,17 @@ In a reference to [a spat he had with Kay Sievers](http://www.theregister.co.uk/
 
 Torvalds also answered a number of other questions, both technical and general, in his usual straightforward no-nonsense way. An edited transcript follows. Thanks are due to my UNIX guru[ Peter Giorgilli](http://www.iscient.com.au/) who suggested a number of questions.
 
+
+# Torvalds说他对systemd没有什么特别的看法 #
+**Linux的创始人Linus Torvalds一向以对一些技术人上的问题有强烈的看法而著称。但是在对systemd看法上，Torvalds是持中立的意见， systemd作为初始化系统在Linux的世界中引起了相当程度的抵制。**
+
+"当谈及systemd时，你可能希望我有许多主观色彩的意见看法，但是我没有." 再一次采访中Torvalds告诉iTWire。 "我个人并不介意systemd， 实际上我主要的桌面电脑和比较本都在运行它"。
+
+在提到他与systemd的主要开发人员[Kay Sievers的口水战](http://www.theregister.co.uk/2014/04/05/torvalds_sievers_dust_up/)时，Torvalds补充道：我不赞同某些开发者是因为他们在错误和兼容性上太过傲慢。但我也肯定不是在讨厌systemd一切设计思想的人们阵营里面。
+
+Torvalds还以他一贯的直白的方式回答了其他许多技术问题和一般问题。记录编辑如下， 感谢我的UNIX专家[Peter Giorgilli](http://www.iscient.com.au/)提出的一些问题。
+
+
 iTWire: Systemd seems to depart to a large extent from the original idea of simplicity that was a hallmark of UNIX systems. Would you agree? And is this a good or a bad thing?
 Linus Torvalds: So I think many of the "original ideals" of UNIX are these days more of a mindset issue than necessarily reflecting reality of the situation.
 
@@ -18,7 +29,24 @@ And systemd is in no way the piece that breaks with old UNIX legacy. Graphical a
 
 Now, I'm still old-fashioned enough that I like my log-files in text, not binary, so I think sometimes systemd hasn't necessarily had the best of taste, but hey, details..
 
+问题一：
+Systemd似乎很大程度上脱离了UNIX系统标志的简单性。你同意这样做吗？ 这是好事还是坏事？
+
+Linus Torvalds: 嗯，我认为UNIX的许多“原始的ideals”现在来看更多是一个心态问题，而不能够完全反映现实情况。
+
+在理解传统的Unix模式"多一件事并把它作好"来说，这仍然是有价值的。许多工作流可以作为简单工具的管道，这样每个工具都有自己的价值，但现在我们面对的问题是，这在一些更复杂的系统中并不能工作的很好。所以它不能作为一些大型程序工作的方式或者设计已经很长一段时间了。这是一个有用的简化，在某些层面上仍然是正确的，但是我认为这也很清楚，它并不能真实地描述大部分的现实。
+
+它(systemd)也许就描述了这些特定的情况，因而，我认为这是一个非常有用的范例工具。人们仍然在使用与Unix相关的传统的一些管道如进程和文件描述符。但是，在一个非常大且复杂的统一系统里，有很多特定的情况。
+
+且systemd绝不是Unix遗留下来的哪些碎片。图形应用程序很少以这种方式工作（在“LyX”这样的东西中肯定有它的意思，但我认为这是一个例外而不是规则），与这种传统想违的反例还有就是GNU emacs. 它绝不是传统的Unix的模型，而是一个全新的大的架构。 就像systemd一样。
+
+现在，我仍然很老套，我喜欢用文本的方式记录日志而非二进制，所以有时我认为systemd的设计未必是最好的味道，但嘿，这是细节的地方了....
+
 Have you seen similar situations before - right from 1991 when you first put Linux up for download - where the introduction of a new way of doing things caused such a lot of bitterness and extreme reactions?
+
+
+问题二：
+你以前见过类似的情况吗 - 从1991年开始，当你把Linux第一次上传供他人下载的时候 - 引入了一种新的做事方式引起了如此多的痛苦和极端的反应？
 
 Oh, there's been bitter fights before. Just think about the emacs vs vi wars. Or, closer to systemd, the whole "SysV init" vs "BSD init" differences certainly ended up being things that people had "heated discussions" about. Or think about the desktop comparisons.
 
@@ -38,6 +66,10 @@ And there's a classic term for it in the BSD camps: "bikeshed painting", which i
 
 Have you read the new document by Lennart Poettering about organising distributions with the Btrfs filesystem as default? If so, what do you think of it?
 
+
+问题三：
+您是否阅读过Lennart Poettering有关将Btrfs文件系统作为组织发行版中为默认文件系统新文档？ 如果是这样，你怎么看待它？
+
 I'm not at all sure that's necessarily the right way to go about things, but I'm actually very happy that people are working in that direction. The current packaging model is certainly broken for third-party applications, and I'm not convinced it's all that great even for projects that are distributed by Linux distributions as part of the core distro.
 
 Are the exact details of how you use Btrfs to implement this the right thing? I have absolutely no idea. It's a complex problem, and it's not going to be solved overnight with some radical new thing, and I'm rather suspicious of fancy new models that change everything and claim it solves things (maybe the newness and complexity and fancy details just make it hard to say that it _doesn't_ have the problems existing systems have, so then that is seen as an argument that the problems no longer exist - not because they truly went away, but simply because they got too hard to argue about because so much changed).
@@ -45,6 +77,9 @@ Are the exact details of how you use Btrfs to implement this the right thing? I 
 But I think it's very much a problem worth looking at.
 
 After using Git for nearly a decade now, are there any features that have been added down the years that have surprised you?
+
+问题四：
+在使用Git近十年以来，这些年以来有什么新加的功能是惊讶到你了吗？
 
 Well, there really haven't been that many core changes. It's very recognisably the same thing, just polished and done better. Most of the really core concepts are totally unchanged.
 
@@ -62,6 +97,9 @@ Our local school used Linux and OpenOffice (not exclusively, but still) even bef
 
 Following on from this, do you have any views regarding how IT is taught in schools, or more generally on the place of IT in education? (For example, the use of devices such as tablets in the classroom.)
 
+问题五：
+以上所述，你对于如何在校教授IT，或者更一般地说在教育领域的IT发展有什么意见？ （例如，在教室中使用平板电脑等设备。）
+
 I'm not a huge fan of tablets, except as pure consumption devices. Don't get me wrong, I use a tablet myself, and use it daily for just reading email when not at the computer (along with my phone), but I want a keyboard if I want to *create* something. And I think that's true in education too. Sure, a lot of it is "consumption", and being able to show animations instead of static pictures can certainly be a powerful teaching tool that any electronic media has going for it over a traditional book, but Patricia just wanted a book for school _as_ a book, rather than on kindle, because she wanted to do highlights and sticky notes etc. And sure, you can do that on electronic media too, but not necessarily better. And when you actually *create* something, I just suspect a laptop would be much better.
 
 And in the end, I don't think the real problem in education is IT or the lack of IT.  I strongly think that a good teacher that actually gets to teach (and not just for tests and having to meet some arbitrary benchmarks, which seems to be so common) is what matters *so* much more. And even aside from the teacher, one of the things we looked for for our kids was not just to find a good school, but move to an area where our peers (and thus the kids peers) appreciated education.
@@ -69,6 +107,10 @@ And in the end, I don't think the real problem in education is IT or the lack of
 IT? Not special. It can help, it can hurt. I think it's a fun and rewarding area of employment, and I'm happy that it pays well. I like IT, but it's not something primary (ok, except if you're a tech company, and your #1 job is literally to do the IT part). I may be a huge computer nerd, but even so I don't think education should be about computers. Not as a subject, and not as a classroom resource either.
 
 What do you think about providing laptops to kids in schools at an early age - like the OLPC calls for? Does it help in education or is it a hindrance?
+
+问题六：
+你如何看待在OLPC所要求的给在校的孩子们提供便携式笔记本电脑的问题？ 这对教育是帮助还是阻碍呢？
+
 
 I don't think the OLPC was so much about "early age" as "widely available". As in poor areas that just didn't have access to computers *regardless* of age.
 
@@ -83,11 +125,19 @@ So support tinkering by any means: have internet and the computers to access it 
 There are resources on the web for kids to learn, if they are interested. Show them those, and let them be. Not everybody will be interested, and you can't force it without destroying the tinkering, I think.
 
 Do you think you're a better programmer today than you were, say, 10 years ago?
+
+问题七：
+相比十年前来说，你是否认为自己变成了一个更好的程序员?
+
+
 Well, I certainly did a lot *more* programming ten years ago than I do today, so I'd have to say "no". I was clearly a more productive programmer back when I did more programming.
 
 I still wouldn't call myself a "manager" - I certainly haven't fallen that far, and I don't do quarterly budgets etc - but at the same time I'm not really a programmer any more either. "Technical lead". You need to know programming in order to be able to judge what works and what doesn't, but I write more "how about solving it this way" kind of emails than I actually write code.
 
 Do you find it any more difficult to program the older you get?
+
+问题八：
+你是否觉得年龄越大越在难以编程？
 
 Yes and no. It's not that it's more difficult to program per se, but especially as a top-level maintainer I can simply not concentrate on one particular area the way you really need to do in order to be able to really solve knotty problems. I just don't get to be that specialised any more, and I really can't afford to get in the "zone" and work on just one very particular problem for a week or two (or month. Or whatever). And programming is all about the details, and getting them right, and you really need to sit down and be very intimate with one particular issue.
 
@@ -99,6 +149,10 @@ I think one of the reasons I still enjoy doing what I do is that what I do today
 
 Do you enjoy managing such a large bunch of often unwieldy individuals or is there more tearing our of hair than the public is witness to?
 
+问题九：
+你是否喜欢管理如此庞大且难以控制的社群？ 是否有比公众目睹更多撕逼的事件？
+
+
 I do enjoy it, and I actually think that there is much *less* tearing out of hair than the public witnesses.
 
 People see the stories of the storms and the vocal arguments. You're writing about one for systemd, but I can point you to numerous ones about my cursing at people, and if you're outside, those may be the only ones you've seen about the process. Because they are, again, the puffery, the opinion pieces, the things that take flight. Very few people write about deep and interesting technical discussions about some random area, and the people who do (like LWN etc) don't get he social media spread _unless_ they then write a piece about something else that everybody can have an opinion on.
@@ -106,6 +160,10 @@ People see the stories of the storms and the vocal arguments. You're writing abo
 Is it stressful being a technical lead for a big project? Yes, it can be, and it's not always fun. But *most* of the time things actually work well, most of the time I really like all the people working with me, and most of the time it's just a lot of fun. The occasional flare-up isn't necessarily horribly bad either. I don't know about you, but I personally get more stressed out over "constant low-grade friction" than about some occasional big shouting match where people really call each other names.
 
 If you were starting out again to write a UNIX-like kernel, would you still use the "C" programming language?
+
+问题十：
+如果让你重新再写一次类UNIX的内核，你是否会仍然使用C编程语言？
+
 
 Absolutely. That's one thing that definitely hasn't changed.
 Assuming you followed the "Snowden" revelations - was there anything in particular that surprised you regarding the reported extent of mass surveillance being undertaken by the NSA?

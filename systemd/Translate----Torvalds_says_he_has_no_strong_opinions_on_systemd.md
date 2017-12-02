@@ -44,13 +44,17 @@ Linus Torvalds: 嗯，我认为UNIX的许多“原始的ideals”现在来看更
 
 Have you seen similar situations before - right from 1991 when you first put Linux up for download - where the introduction of a new way of doing things caused such a lot of bitterness and extreme reactions?
 
-
-问题二：
-你以前见过类似的情况吗 - 从1991年开始，当你把Linux第一次上传供他人下载的时候 - 引入了一种新的做事方式引起了如此多的痛苦和极端的反应？
-
 Oh, there's been bitter fights before. Just think about the emacs vs vi wars. Or, closer to systemd, the whole "SysV init" vs "BSD init" differences certainly ended up being things that people had "heated discussions" about. Or think about the desktop comparisons.
 
 I'm not really sure how different the systemd brawls are from those. It's technical, but admittedly the systemd developers have also been really good at alienating people on a purely personal level too. Not that that is anything particularly new under the sun _either_: the (very) bitter wars between the GPL and the BSD license camps during late-80s and early-90s were almost certainly more about the persons involved and how they pissed off people than necessarily deeply about other differences (which existed, obviously, but still).
+
+问题二：
+你以前见过类似的情况吗 - 从1991年开始，当你把Linux第一次上传供他人下载的时候 - 当时引入了一种新的做事方式，这是否引起了如此多的敌意和极端的反应？
+
+哦，之前也有比较大的争论，就emacs和vi的战争而言，就和systemd和相近，"SysV init"和"BSD init"的整体差异也促成了人们相当"热烈的讨论"的。或者你可以想象一些桌面与非桌面系统的比较。
+
+我也不确定关于systemd的争论和这些有什么不同。这是技术性的，但不可否认的是，systemd的开发人员善于在纯粹的个人层面去异化(分裂)人们。这也不是什么新奇的事，在80年代末，90年代初的那段期间，围绕GPL和BSD协议的就发生过非常激烈的争论，几乎可以肯定的是当时人们深陷如何去激怒他人，而并非真正关注它们之间(始终存在的明显的)差异。
+
 
 What would you say if someone argued that systemd has created a single point of failure which makes a system unbootable if it fails? It centralises a lot of services in itself and if one fails, then the system is pretty much useless.
 
@@ -64,8 +68,21 @@ So I have to admit that I don't generally try to follow storms like this, but I 
 
 And there's a classic term for it in the BSD camps: "bikeshed painting", which is very much about how random people can feel like they have the ability to discuss superficial issues, because everybody feels that they can give an opinion on the color choice. So issues that are superficial get a lot more noise. Then when it comes to actual hard and deep technical decisions, people (sometimes) realise that they just don't know enough, and they won't give that the same kind of mouth-time.
 
-Have you read the new document by Lennart Poettering about organising distributions with the Btrfs filesystem as default? If so, what do you think of it?
+问题三：
+有人认为systemd创建了一个单一的故障点，这使得如果它失败就会使整个系统不可用，你怎么看这个问题？ 比较systemd本身集成了很多的服务，他失败就意味着整个系统都不可用。
 
+我认为这是人们真在寻找的借口。 我的意思是，如果这是不使用一个软件的原因，那么你也不应该使用内核。
+
+当然，内核是特殊的，内核工程师都是极其优异的。大家都知道。所以把其他一些相对比较普通的项目同内核做比较有失公平。但是像gblic等这样的工程，如果他们搞砸了，每个人都会深受其害，所以我不知道。
+
+我之所以提及这个问题，是因为有人要求移植一份到BSD的服务器上而非Linux上，我从来没有见过如此极端的行为，我从1998以来，就只使用Linux.
+
+所以，我必须得承认，我不会跟随这样的风暴，我也认为有一件事真在发生变化，那就是你有这种尖锐的民粹主义的文化，这一点上我认为人们它过于执着了。这显然不仅仅是在科技媒体上(一大堆所谓严肃的新闻网站也在做这样的使用，我相信你能get到我说的点)。但科技界当然也有很多“意见” “和相关的宣传。
+
+在BSD阵营里有一个经典的术语：“双色画”，它更多的是关于让随意的人们能够感觉到他们有能力讨论肤浅的问题，因为每个人都觉得他们可以对颜色选择给出意见。 所以表面上的问题都会产生很多的噪音。 那么当涉及到实际的艰苦和深刻的技术决策时，人们（有时）会意识到自己不够了解，不会给出同样的嘴巴时间(译注：印证Linus的观点："Talk is cheap,show me the code")。
+
+
+Have you read the new document by Lennart Poettering about organising distributions with the Btrfs filesystem as default? If so, what do you think of it?
 
 问题三：
 您是否阅读过Lennart Poettering有关将Btrfs文件系统作为组织发行版中为默认文件系统新文档？ 如果是这样，你怎么看待它？
